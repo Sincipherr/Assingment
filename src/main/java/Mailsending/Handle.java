@@ -1,12 +1,21 @@
 package Mailsending;
 
+import com.geekster.WeeklyTest_16_4.CustomDetails;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class Handle {
+    @Autowired
+    @Qualifier("patient1")
+    CustomDetails cd;
     void sendMail(){
+
+
         //host : gmail is smtp :
         String host  = "smtp.gmail.com";
         Properties props = System.getProperties();
@@ -22,6 +31,7 @@ public class Handle {
         MimeMessage mimeMessage = new MimeMessage(mailSession);
         try {
             //sender
+            mimeMessage.setText(cd.getpatienstDetails().toString());
             mimeMessage.setFrom(MailConstant.SENDER);
             //receiver
             mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(MailConstant.RECEIVERMAILADDRESS));
@@ -32,5 +42,6 @@ public class Handle {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+
     }
 }
