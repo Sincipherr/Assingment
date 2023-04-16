@@ -5,7 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages = {"AnotherPackage"})
+@ComponentScan(basePackages = {"AnotherPackage","Mailsending"})
 public class CustomDetails {
     @Bean("patient1")
     public Patient getpatienstDetails(){
